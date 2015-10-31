@@ -186,10 +186,21 @@ public static Cons findpath(Object item, Object cave) {
 	}
 	else return null;
  }
-//
-//public static Object follow(Cons path, Object cave) {
-// }
-//
+
+public static Object follow(Cons path, Object cave) {
+	if(path == null || cave == null) return null;
+	
+	if(path != null){
+		if("first".equals(first(path))){
+			return follow(rest(path), first((Cons)cave));
+		}
+		else if("rest".equals(first(path))){
+			return follow(rest(path), rest((Cons)cave));			
+		}
+	}
+		return (Object)cave;		
+ }
+
 //public static Object corresp(Object item, Object tree1, Object tree2) {
 //}
 //
@@ -217,8 +228,8 @@ public static Cons findpath(Object item, Object cave) {
         Cons path = findpath("gold", cave);
         printanswer("cave = " , cave);
         printanswer("path = " , path);
-//        printanswer("follow = " , follow(path, cave));
-//
+        printanswer("follow = " , follow(path, cave));
+
         Cons caveb = list(list(list("green", "eggs", "and"),
                                list(list("ham"))),
                           "rocks",
@@ -227,8 +238,8 @@ public static Cons findpath(Object item, Object cave) {
         Cons pathb = findpath("gold", caveb);
         printanswer("caveb = " , caveb);
         printanswer("pathb = " , pathb);
-//        printanswer("follow = " , follow(pathb, caveb));
-//
+        printanswer("follow = " , follow(pathb, caveb));
+
 //        Cons treea = list(list("my", "eyes"),
 //                          list("have", "seen", list("the", "light")));
 //        Cons treeb = list(list("my", "ears"),
